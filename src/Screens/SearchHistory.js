@@ -226,7 +226,7 @@ const SearchHistory = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          staff_id: fromdate && tilldate ? staffId : 'All',
+          // staff_id: fromdate && tilldate ? staffId : 'All',
           from_date: fromdate,
           till_date: tilldate,
         }),
@@ -252,7 +252,7 @@ const SearchHistory = () => {
   };
 
   useEffect(() => {
-    SearchHistoryApi(fromDate,tillDate);
+    SearchHistoryApi(fromDate, tillDate);
   }, []);
 
   const onRefresh = async () => {
@@ -281,7 +281,13 @@ const SearchHistory = () => {
           justifyContent: 'center',
         }}>
         <TouchableOpacity
-          style={{position: 'absolute', top: 15, left: 15}}
+          style={{
+            position: 'absolute',
+            top: 15,
+            left: 15,
+            width: '13%',
+            height: 40,
+          }}
           onPress={() => {
             navigation.goBack();
           }}>
@@ -306,7 +312,7 @@ const SearchHistory = () => {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            colors={['#9Bd35A', '#689F38']}
+            colors={['#8B4513', '#8B4513']}
           />
         }>
         <View
@@ -315,6 +321,8 @@ const SearchHistory = () => {
             backgroundColor: '#ddd',
             padding: 7,
             borderRadius: 5,
+            justifyContent: 'center',
+            alignItems: 'center',
           }}>
           <View
             style={{

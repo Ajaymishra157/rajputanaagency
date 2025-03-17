@@ -164,7 +164,12 @@ const HomeScreen = () => {
           justifyContent: 'center',
         }}>
         <TouchableOpacity
-          style={{position: 'absolute', top: 15, left: 15}}
+          style={{
+            position: 'absolute',
+            top: 15,
+            left: 15,
+            width: '13%',
+          }}
           onPress={() => {
             navigation.goBack();
           }}>
@@ -624,7 +629,7 @@ const HomeScreen = () => {
                   SetInfoModal(true);
                   setIsModalVisible(false);
                 }}>
-                <AntDesign name="infocirlceo" size={20} color="black" />
+                <AntDesign name="infocirlceo" size={20} color={colors.Brown} />
 
                 <Text
                   style={{

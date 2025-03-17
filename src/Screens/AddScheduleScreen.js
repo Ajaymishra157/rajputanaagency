@@ -506,10 +506,10 @@ const AddScheduleScreen = () => {
   // The main submit function
   const handleSubmit = async () => {
     let valid = true;
-    setStaffNameError('');
+    setStaffNameError(''); // Reset error
 
-    // Check if dropdown data is selected, which is required
-    if (!dropdownData) {
+    // Check if dropdown data is selected
+    if (!selectedType || !selectedId) {
       setStaffNameError('Staff Name Is Required');
       valid = false;
     }
@@ -664,6 +664,7 @@ const AddScheduleScreen = () => {
                 color: 'red',
                 fontSize: 12,
                 marginBottom: 10,
+                marginTop: 10,
                 fontFamily: 'inter-Regular',
               }}>
               {staffNameError}

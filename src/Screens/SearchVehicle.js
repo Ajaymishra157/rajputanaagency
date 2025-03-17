@@ -10,13 +10,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import colors from '../CommonFiles/Colors';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {ENDPOINTS} from '../CommonFiles/Constant';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'; // Use FontAwesome for the icons
 import Entypo from 'react-native-vector-icons/Entypo';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
@@ -26,6 +27,8 @@ const SearchVehicle = () => {
   console.log('search vehicleType', SearchVehicle);
   const [SearchLoading, setSearchLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+
+  const textInputRef = useRef(null);
 
   const [text, setText] = useState(null);
   console.log('number', text);
@@ -44,6 +47,18 @@ const SearchVehicle = () => {
     setText(newText);
     // You can also add any additional logic here if needed, like validation or fetching data
   };
+
+  // Focus TextInput when the screen loads
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (textInputRef.current) {
+        textInputRef.current.focus(); // Focus on TextInput
+      }
+    }, 100); // Add a small delay to ensure the screen has fully loaded
+
+    // Clear the timer if the component unmounts
+    return () => clearTimeout(timer);
+  }, []);
 
   console.log('selected type', selectedType);
   const [dropdownData] = useState([
@@ -158,7 +173,12 @@ const SearchVehicle = () => {
           justifyContent: 'center',
         }}>
         <TouchableOpacity
-          style={{position: 'absolute', top: 15, left: 15}}
+          style={{
+            position: 'absolute',
+            top: 15,
+            left: 15,
+            width: '13%',
+          }}
           onPress={() => {
             navigation.goBack();
           }}>
@@ -269,6 +289,7 @@ const SearchVehicle = () => {
             backgroundColor: 'white',
             flexDirection: 'row',
             justifyContent: 'space-between',
+            alignItems: 'center',
             borderColor: SearchError ? 'red' : '#ddd',
           }}>
           <TextInput
@@ -279,11 +300,24 @@ const SearchVehicle = () => {
               color: 'black',
               height: 50,
             }}
+            ref={textInputRef}
             placeholder="Search No"
             placeholderTextColor="grey"
             value={text}
             onChangeText={handleTextChange}
           />
+          {text ? (
+            <TouchableOpacity
+              onPress={() => setText('')}
+              style={{
+                marginRight: 7,
+                height: 40,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Entypo name="cross" size={20} color="black" />
+            </TouchableOpacity>
+          ) : null}
         </View>
         <TouchableOpacity
           style={{

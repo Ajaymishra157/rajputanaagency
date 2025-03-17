@@ -162,7 +162,12 @@ const StaffSchedule = () => {
           justifyContent: 'center',
         }}>
         <TouchableOpacity
-          style={{position: 'absolute', top: 15, left: 15}}
+          style={{
+            position: 'absolute',
+            top: 15,
+            left: 15,
+            width: '13%',
+          }}
           onPress={() => {
             navigation.goBack();
           }}>

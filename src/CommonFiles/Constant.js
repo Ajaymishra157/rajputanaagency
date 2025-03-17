@@ -1,4 +1,5 @@
 export const BASE_URL = 'https://rajputana.webmastersinfotech.in/api/';
+// export const BASE_URL = 'https://rajputanaagency.webmastersinfotech.in/newapi/';
 
 export const ENDPOINTS = {
   LOGIN: `${BASE_URL}login.php`,

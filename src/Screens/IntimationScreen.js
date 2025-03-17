@@ -279,8 +279,8 @@ const IntimationScreen = () => {
       // Define the destination path directly to the Downloads folder (Android)
       const destinationPath =
         Platform.OS === 'android'
-          ? `${RNFS.DownloadDirectoryPath}/IntimationDetails.pdf` // Downloads folder on Android
-          : `${RNFS.DocumentDirectoryPath}/IntimationDetails.pdf`; // iOS uses Document directory
+          ? `${RNFS.DownloadDirectoryPath}/IntimationDetails(${vehicleDetails.vehicle_registration_no}).pdf` // Downloads folder on Android
+          : `${RNFS.DocumentDirectoryPath}/IntimationDetails(${vehicleDetails.vehicle_registration_no}).pdf`; // iOS uses Document directory
 
       // Move the file to the Downloads folder (Android)
       await RNFS.moveFile(file.filePath, destinationPath);
